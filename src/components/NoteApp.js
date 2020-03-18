@@ -7,10 +7,6 @@ import NotesContext from '../context/notes-context';
  const NoteApp = (props) => {
     const [notes, dispatch] = useReducer(notesReducer, [])
 
-    const removeNote = (title) => {
-        dispatch({ type: 'REMOVE_NOTE', title })
-    }
-
     useEffect(() => {
         const notes = JSON.parse(localStorage.getItem('notes'));
 
