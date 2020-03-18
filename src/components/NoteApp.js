@@ -3,9 +3,8 @@ import notesReducer from './../reducers/notes';
 
 import AddNoteForm from './AddNoteForm';
 import NoteList from './NoteList';
-
-
-const NoteApp = (props) => {
+import NotesContext from '../context/notes-context';
+ const NoteApp = (props) => {
     const [notes, dispatch] = useReducer(notesReducer, [])
 
     const removeNote = (title) => {
@@ -25,11 +24,11 @@ const NoteApp = (props) => {
     }, [notes])
 
     return (
-        <div>
+        <NotesContext.Provider value={{ notes, dispatch }}>
             <h1>Notes</h1>
-            <NoteList notes={notes} removeNote={removeNote} />
-            <AddNoteForm dispatch={dispatch} />
-        </div>
+            <NoteList />
+            <AddNoteForm/>
+        </NotesContext.Provider>
     );
 }
 
